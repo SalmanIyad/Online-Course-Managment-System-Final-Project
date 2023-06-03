@@ -1,0 +1,227 @@
+-- Student entity
+CREATE TABLE Student (
+  Student_ID NUMBER PRIMARY KEY,
+  Name VARCHAR2(100),
+  Email VARCHAR2(100),
+  Password VARCHAR2(50)
+);
+DESCRIBE Student;
+-- Table STUDENT created.
+
+
+-- Course entity
+CREATE TABLE Course (
+  Course_ID NUMBER PRIMARY KEY,
+  Title VARCHAR2(100),
+  Description VARCHAR2(500),
+  Duration NUMBER
+);
+DESCRIBE Course;
+-- Table COURSE created.
+
+
+-- Enrollment entity
+CREATE TABLE Instructor (
+  Instructor_ID NUMBER PRIMARY KEY,
+  Name VARCHAR2(100),
+  Email VARCHAR2(100),
+  Specialization VARCHAR2(200)
+);
+DESCRIBE Instructor;
+-- Table INSTRUCTOR created.
+
+
+-- Enrollment entity
+CREATE TABLE Enrollment (
+    Enrollment_ID NUMBER PRIMARY KEY,
+    Student_ID NUMBER,
+    CONSTRAINT Student_ID_C FOREIGN KEY(Student_ID) REFERENCES Student(Student_ID),
+    Course_ID NUMBER,
+    CONSTRAINT Course_ID_C FOREIGN KEY (Course_ID) REFERENCES Course(Course_ID),
+    Enrollment_Date DATE
+);
+DESCRIBE Enrollment;
+-- Table ENROLLMENT created.
+
+-- Create the lesson table
+CREATE TABLE lesson (
+    lesson_id INT PRIMARY KEY,
+    course_id INT,
+    lesson_title VARCHAR(255),
+    lesson_description VARCHAR(255),
+    lesson_date DATE,
+    FOREIGN KEY (course_id) REFERENCES course(course_id)
+);
+
+-- Create the relationship between lesson and student (many-to-many)
+CREATE TABLE student_lesson (
+    student_id INT,
+    lesson_id INT,
+    PRIMARY KEY (student_id, lesson_id),
+    FOREIGN KEY (student_id) REFERENCES student(student_id),
+    FOREIGN KEY (lesson_id) REFERENCES lesson(lesson_id)
+);
+
+-- Teaches Relationship
+CREATE TABLE Teaches (
+    Instructor_ID NUMBER,
+    CONSTRAINT Instructor_ID FOREIGN KEY (Instructor_ID) REFERENCES Instructor(Instructor_ID),
+    Course_ID NUMBER,
+    CONSTRAINT Course_ID FOREIGN KEY (Course_ID) REFERENCES Course(Course_ID),
+    PRIMARY KEY (Instructor_ID, Course_ID)
+);
+DESCRIBE Teaches;
+-- Table TEACHES created.
+
+
+-- Enrolls Relationship
+CREATE TABLE Enrolls (
+    Student_ID NUMBER,
+    CONSTRAINT Student_ID_C2 FOREIGN KEY (Student_ID) REFERENCES Student(Student_ID),
+    Course_ID NUMBER,
+    CONSTRAINT Course_ID_C2 FOREIGN KEY (Course_ID) REFERENCES Course(Course_ID),
+    PRIMARY KEY (Student_ID, Course_ID)
+);
+DESCRIBE Enrolls;
+-- Table ENROLLS created.
+
+
+
+----- Inserting into Student
+
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (1, 'Salman Iyad', 'salman@hotmail.com', '1111');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (2, 'Ahmed Nofal', 'Ahmed@hotmail.com', '2222');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (3, 'Abo Omer', 'aboomer@hotmail.com', '3333');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (4, 'Moh Moh', 'MohMoh@hotmail.com', '4444');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (5, 'sofian', 'sofian@hotmail.com', '5555');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (6, 'taha', 'taha@hotmail.com', '6666');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (7, 'hossain', 'hossain@hotmail.com', '7777');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (8, 'maher', 'maher@hotmail.com', '8888');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (9, 'hosny', 'hosny@hotmail.com', '9999');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (10, 'yazan', 'yazan@hotmail.com', '1010');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (11, 'saher', 'saher@hotmail.com', '11011');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (12, 'gaber', 'gaber@hotmail.com', '1212');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (13, 'mahmmod', 'mahmmod@hotmail.com', '1313');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (14, 'iyad', 'iyad@hotmail.com', '1414');
+INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (15, 'ali', 'ali@hotmail.com', '1515');
+
+UPDATE student SET Password = '1111' where Student_ID = 1;
+UPDATE student SET Password = '2222' where Student_ID = 2;  
+
+select * from Student;
+
+----- Inserting into Course
+
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (1, 'Introduction to Computer Science', 'An introductory course covering the fundamentals of computer science.', 12);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (2, 'Data Structures and Algorithms', 'A course exploring various data structures and algorithms used in computer programming.', 10);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (3, 'Database Management Systems', 'A comprehensive course on database design and management.', 8);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (4, 'Web Development Fundamentals', 'An introductory course to web development technologies and concepts.', 6);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (5, 'Machine Learning and AI', 'A course covering the principles and applications of machine learning and artificial intelligence.', 12);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (6, 'Mobile App Development', 'A hands-on course on developing mobile applications for iOS and Android.', 8);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (7, 'Network Security', 'An advanced course focusing on network security and cryptography.', 10);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (8, 'Software Engineering Principles', 'A course on software engineering methodologies and best practices.', 10);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (9, 'Cloud Computing Technologies', 'An overview of cloud computing platforms and services.', 6);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (10, 'Digital Marketing Strategies', 'A course on effective digital marketing strategies and techniques.', 8);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (11, 'Artificial Neural Networks', 'A deep dive into artificial neural networks and their applications.', 10);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (12, 'Introduction to Robotics', 'An introductory course exploring the field of robotics.', 6);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (13, 'Data Visualization Techniques', 'A course on visualizing and presenting data effectively.', 8);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (14, 'Cybersecurity Fundamenxtals', 'An introductory course covering the basics of cybersecurity.', 6);
+INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (15, 'E-commerce Strategies', 'A course on building and managing successful e-commerce platforms.', 8);
+
+
+select * from Course;
+
+
+----- Inserting into Course
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (1, 'John Smith', 'john.smith@example.com', 'Computer Science');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (2, 'Jane Doe', 'jane.doe@example.com', 'Data Analytics');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (3, 'David Johnson', 'david.johnson@example.com', 'Software Engineering');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (4, 'Emily Wilson', 'emily.wilson@example.com', 'Web Development');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (5, 'Michael Brown', 'michael.brown@example.com', 'Database Management');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (6, 'Jennifer Davis', 'jennifer.davis@example.com', 'Artificial Intelligence');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (7, 'Robert Anderson', 'robert.anderson@example.com', 'Cybersecurity');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (8, 'Jessica Thomas', 'jessica.thomas@example.com', 'Machine Learning');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (9, 'Daniel Martinez', 'daniel.martinez@example.com', 'Data Science');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (10, 'Amy Lewis', 'amy.lewis@example.com', 'Mobile App Development');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (11, 'Richard Clark', 'richard.clark@example.com', 'Network Security');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (12, 'Samantha Turner', 'samantha.turner@example.com', 'Cloud Computing');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (13, 'William White', 'william.white@example.com', 'Digital Marketing');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (14, 'Olivia Green', 'olivia.green@example.com', 'Data Visualization');
+INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (15, 'Andrew Wilson', 'andrew.wilson@example.com', 'Robotics');
+
+SELECT * FROM Instructor;
+
+
+----  Inserting into Enrollment
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (1, 1, 1, TO_DATE('2022-11-15', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (2, 2, 2, TO_DATE('2022-08-23', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (3, 3, 3, TO_DATE('2022-02-23', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (4, 4, 4, TO_DATE('2022-07-23', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (5, 5, 5, TO_DATE('2022-02-13', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (6, 6, 6, TO_DATE('2022-05-23', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (7, 7, 7, TO_DATE('2022-02-13', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (8, 8, 8, TO_DATE('2022-04-23', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (9, 9, 9, TO_DATE('2022-12-23', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (10, 10, 10, TO_DATE('2023-02-13', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (11, 11, 11, TO_DATE('2023-08-23', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (12, 12, 12, TO_DATE('2023-09-03', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (13, 13, 13, TO_DATE('2023-01-03', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (14, 14, 14, TO_DATE('2023-04-03', 'YYYY-MM-DD'));
+INSERT INTO Enrollment (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date) VALUES (15, 15, 15, TO_DATE('2023-03-23', 'YYYY-MM-DD'));
+SELECT * FROM Enrollment;
+
+
+-- Insert into lesson
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (1, 1, 'Lesson 1', 'Description for Lesson 1', TO_DATE('01-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (2, 1, 'Lesson 2', 'Description for Lesson 2', TO_DATE('03-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (3, 1, 'Lesson 3', 'Description for Lesson 3', TO_DATE('05-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (4, 1, 'Lesson 4', 'Description for Lesson 4', TO_DATE('05-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (5, 1, 'Lesson 5', 'Description for Lesson 5', TO_DATE('10-JUN-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (6, 2, 'Lesson 1', 'Description for Lesson 1', TO_DATE('01-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (7, 2, 'Lesson 2', 'Description for Lesson 2', TO_DATE('03-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (8, 2, 'Lesson 3', 'Description for Lesson 3', TO_DATE('05-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (9, 2, 'Lesson 4', 'Description for Lesson 4', TO_DATE('05-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (10, 2, 'Lesson 5', 'Description for Lesson 5', TO_DATE('10-JUN-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (11, 3, 'Lesson 1', 'Description for Lesson 1', TO_DATE('01-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (12, 3, 'Lesson 2', 'Description for Lesson 2', TO_DATE('03-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (13, 3, 'Lesson 3', 'Description for Lesson 3', TO_DATE('05-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (14, 3, 'Lesson 4', 'Description for Lesson 4', TO_DATE('05-MAY-23', 'DD-MON-YY'));
+INSERT INTO lesson (lesson_id, course_id, lesson_title, lesson_description, lesson_date) VALUES (15, 3, 'Lesson 5', 'Description for Lesson 5', TO_DATE('10-JUN-23', 'DD-MON-YY'));
+
+SELECT * FROM lesson;
+
+
+-- Insert into student_lesson
+INSERT INTO student_lesson (student_id, lesson_id) VALUES (1, 1);
+INSERT INTO student_lesson (student_id, lesson_id) VALUES (1, 2);
+INSERT INTO student_lesson (student_id, lesson_id) VALUES (1, 3);
+INSERT INTO student_lesson (student_id, lesson_id) VALUES (2, 6);
+INSERT INTO student_lesson (student_id, lesson_id) VALUES (2, 7);
+INSERT INTO student_lesson (student_id, lesson_id) VALUES (2, 2);
+
+SELECT * FROM student_lesson;
+
+---- INSERTING INTO TEACHES
+
+--BEGIN
+--  FOR i IN 1..15 LOOP
+--    INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (i, i);
+--  END LOOP;
+--END;
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (1, 1);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (2, 2);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (3, 3);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (4, 4);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (5, 5);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (6, 6);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (7, 7);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (8, 8);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (9, 9);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (10, 10);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (11, 11);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (12, 12);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (13, 13);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (14, 14);
+INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (15, 15);
+
+SELECT * FROM TEACHES;
