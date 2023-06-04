@@ -62,8 +62,8 @@ CREATE TABLE student_lesson (
     FOREIGN KEY (lesson_id) REFERENCES lesson(lesson_id)
 );
 
--- Teaches Relationship
-CREATE TABLE Teaches (
+-- Instructor_Course Relationship
+CREATE TABLE Instructor_Course (
     Instructor_ID NUMBER,
     CONSTRAINT Instructor_ID FOREIGN KEY (Instructor_ID) REFERENCES Instructor(Instructor_ID),
     Course_ID NUMBER,
@@ -74,21 +74,7 @@ DESCRIBE Teaches;
 -- Table TEACHES created.
 
 
--- Enrolls Relationship
-CREATE TABLE Enrolls (
-    Student_ID NUMBER,
-    CONSTRAINT Student_ID_C2 FOREIGN KEY (Student_ID) REFERENCES Student(Student_ID),
-    Course_ID NUMBER,
-    CONSTRAINT Course_ID_C2 FOREIGN KEY (Course_ID) REFERENCES Course(Course_ID),
-    PRIMARY KEY (Student_ID, Course_ID)
-);
-DESCRIBE Enrolls;
--- Table ENROLLS created.
-
-
-
 ----- Inserting into Student
-
 INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (1, 'Salman Iyad', 'salman@hotmail.com', '1111');
 INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (2, 'Ahmed Nofal', 'Ahmed@hotmail.com', '2222');
 INSERT INTO Student (Student_ID, Name, Email, Password) VALUES (3, 'Abo Omer', 'aboomer@hotmail.com', '3333');
@@ -132,7 +118,7 @@ INSERT INTO Course (Course_ID, Title, Description, Duration) VALUES (15, 'E-comm
 select * from Course;
 
 
------ Inserting into Course
+----- Inserting into Instructor
 INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (1, 'John Smith', 'john.smith@example.com', 'Computer Science');
 INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (2, 'Jane Doe', 'jane.doe@example.com', 'Data Analytics');
 INSERT INTO Instructor (Instructor_ID, Name, Email, Specialization) VALUES (3, 'David Johnson', 'david.johnson@example.com', 'Software Engineering');
@@ -201,27 +187,27 @@ INSERT INTO student_lesson (student_id, lesson_id) VALUES (2, 2);
 
 SELECT * FROM student_lesson;
 
----- INSERTING INTO TEACHES
+---- INSERTING INTO Instructor_Course
 
 --BEGIN
 --  FOR i IN 1..15 LOOP
---    INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (i, i);
+--    INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (i, i);
 --  END LOOP;
 --END;
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (1, 1);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (2, 2);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (3, 3);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (4, 4);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (5, 5);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (6, 6);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (7, 7);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (8, 8);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (9, 9);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (10, 10);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (11, 11);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (12, 12);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (13, 13);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (14, 14);
-INSERT INTO TEACHES (INSTRUCTOR_ID, COURSE_ID) VALUES (15, 15);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (1, 1);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (2, 2);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (3, 3);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (4, 4);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (5, 5);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (6, 6);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (7, 7);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (8, 8);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (9, 9);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (10, 10);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (11, 11);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (12, 12);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (13, 13);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (14, 14);
+INSERT INTO Instructor_Course (INSTRUCTOR_ID, COURSE_ID) VALUES (15, 15);
 
-SELECT * FROM TEACHES;
+SELECT * FROM Instructor_Course;
