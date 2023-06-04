@@ -34,4 +34,5 @@ Here's a breakdown of the code:
 Overall, the project aims to facilitate the management of students, courses, instructors, enrollments, and lessons for online course management system. and provides a basic java framework for interacting with a database using JDBC and performing CRUD operations.
 
 ## Recourses:
- - [Full Project Explanation – 1 HOUR Video [YouTube].](https://www.youtube.com/watch?v=Q7EPap7GUeU).
+ - [Full Project Explanation – 1 HOUR Video [YouTube].](https://www.youtube.com/watch?v=Q7EPap7GUeU)
+ - [Project-Description.pdf](https://github.com/SalmanIyad/Online-Course-Managment-System-Final-Project/files/11646466/Description.pdf)
