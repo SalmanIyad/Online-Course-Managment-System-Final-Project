@@ -1,5 +1,7 @@
 # Online-Course-Managment-System-Final-Project
+
 ## SQL Code Overview:
+
 The project is a database management system for online courses. It involves the management of students, courses, instructors, lessons, and their relationships.
 The database includes the following entities:
 1.	`Student`: Stores information about students, such as their ID, name, email, and password.
@@ -8,6 +10,7 @@ The database includes the following entities:
 4.	`Lesson`: Stores information about the lessons associated with a course, including the lesson ID, course ID, lesson title, lesson description, and lesson date.
 
 And their relationships:
+
 5.	`Enrollment`: Represents the relationship between students and courses, including the enrollment ID, student ID, course ID, and enrollment date.
 6.	`Student_Lesson`: Represents the many-to-many relationship between students and lessons, linking a student to the lessons they are enrolled in.
 7.	`Instructor_Course`: Represents the relationship between instructors and the courses they teach, with the instructor ID and course ID as the primary key.
@@ -15,6 +18,7 @@ And their relationships:
 Also, it includes sample data insertion into the tables to populate the database with initial records.
 
 ## Java Code Overview:
+
 In the other hand, the database has been connected with Java code which represents a simple `CRUD` (Create, Read, Update, Delete) system that represents (Insert, Select, Update, Delete). that interacts with a database. It allows users to perform basic database operations through a command-line interface.
 
 The code uses `JDBC` (Java Database Connectivity) to connect to an Oracle database and execute SQL statements. It prompts the user with a menu, and based on the user's choice, it performs the corresponding operation.
